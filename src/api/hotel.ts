@@ -40,7 +40,7 @@ export const getSingleHotel = async (id: string) => {
 
     return res.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Unauthorized action");
+    throw new Error(error.response?.data?.message);
   }
 };
 
