@@ -10,7 +10,7 @@ const BrandComponent = ({ id, name }: BrandPayload) => {
         <Image
           w="25px"
           src="/images/brand.jpg"
-          alt="Green double couch with wooden legs"
+          alt="Random hotel photo"
           borderRadius="full"
         />
         <Text fontSize={{ base: "xs", lg: "sm" }} fontWeight="bold">

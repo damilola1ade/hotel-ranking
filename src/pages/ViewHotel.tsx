@@ -144,6 +144,7 @@ const ViewHotel = () => {
             to="/"
             leftIcon={<BiArrowBack />}
             variant="ghost"
+            size='sm'
           >
             Go back
           </ChakraButton>

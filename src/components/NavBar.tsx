@@ -6,6 +6,7 @@ const NavBar = () => {
       <Image
         src="/images/hotely.png"
         w={{ base: "72px", lg: "100px" }}
+        alt="logo"
         loading="eager"
       />
     </Flex>
