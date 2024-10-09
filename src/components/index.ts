@@ -8,6 +8,7 @@ import ErrorText from "./ErrorText";
 import Brand from "./Brand";
 import Hotel from "./Hotel";
 import Divider from "./Divider";
+import NavBar from "./NavBar";
 
 export {
   CreateHotel,
@@ -20,4 +21,5 @@ export {
   Brand,
   Hotel,
   Divider,
+  NavBar
 };

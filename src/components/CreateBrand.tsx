@@ -77,15 +77,12 @@ const CreateBrand = () => {
                       ...otherValidation,
                     })}
                     fontSize={{ base: "xs", md: "sm" }}
-                    placeholder="Provide a name for the event"
                     height="50px"
                     borderRadius="sm"
                     type="text"
                     borderColor={errors.name && "red"}
                   />
-                  {errors.name && (
-                    <ErrorText error={errors.name.message} />
-                  )}
+                  {errors.name && <ErrorText error={errors.name.message} />}
                 </Box>
 
                 <Box>
@@ -101,15 +98,12 @@ const CreateBrand = () => {
                       ...otherValidation,
                     })}
                     fontSize={{ base: "xs", md: "sm" }}
-                    placeholder="Provide a name for the event"
                     height="50px"
                     borderRadius="sm"
                     type="text"
                     borderColor={errors.ceo && "red"}
                   />
-                  {errors.ceo && (
-                    <ErrorText error={errors.ceo.message} />
-                  )}
+                  {errors.ceo && <ErrorText error={errors.ceo.message} />}
                 </Box>
 
                 <Box>
@@ -125,21 +119,22 @@ const CreateBrand = () => {
                       ...otherValidation,
                     })}
                     fontSize={{ base: "xs", md: "sm" }}
-                    placeholder="Provide a name for the event"
                     height="50px"
                     borderRadius="sm"
                     type="text"
                     borderColor={errors.hq && "red"}
                   />
-                  {errors.hq && (
-                    <ErrorText error={errors.hq.message} />
-                  )}
+                  {errors.hq && <ErrorText error={errors.hq.message} />}
                 </Box>
               </Flex>
             </ModalBody>
 
             <ModalFooter bg="gray.200" borderRadius="md">
-              <Button isLoading={isLoading} isDisabled={isLoading} type="submit">
+              <Button
+                isLoading={isLoading}
+                isDisabled={isLoading}
+                type="submit"
+              >
                 Create brand
               </Button>
             </ModalFooter>

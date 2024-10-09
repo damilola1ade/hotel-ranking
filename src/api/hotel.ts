@@ -44,11 +44,11 @@ export const getSingleHotel = async (id: string) => {
   }
 };
 
-export const getHotelsByBrand = async (brandName: string) => {
+export const getHotelsByBrand = async (brandNames: string[]) => {
   try {
     const res = await api.get("/hotel/get-all-hotels", {
       params: {
-        brandName,
+        brandName: brandNames,
       },
     });
 

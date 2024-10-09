@@ -114,7 +114,7 @@ const ViewBrand = () => {
 
   if (isLoading || isDeleting) {
     return (
-      <Flex minH="100vh" justifyContent="center" alignItems="center">
+      <Flex minH="70vh" justifyContent="center" alignItems="center">
         <Loader />
       </Flex>
     );
@@ -123,10 +123,15 @@ const ViewBrand = () => {
   return (
     <>
       <Flex py={12} px={{ base: 2, lg: 20 }}>
-        <Flex h="40px" w="100%" justifyContent="space-between">
+        <Flex
+          h="40px"
+          w="100%"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <ChakraButton
             as={Link}
-            to="/home"
+            to="/"
             leftIcon={<BiArrowBack />}
             variant="ghost"
           >
@@ -160,15 +165,15 @@ const ViewBrand = () => {
         p={4}
         flexDirection={{ base: "column", lg: "row-reverse" }}
         justifyContent="space-around"
-        alignItems={{ base: "normal", lg: "center" }}
+        alignItems={{ base: "center", lg: "center" }}
         gap={6}
         fontSize={{ base: "xs", lg: "sm" }}
       >
         <Image
-          src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          alt="Green double couch with wooden legs"
-          borderRadius="lg"
-          w="400px"
+          src="/images/brand.jpg"
+          alt="apple logo"
+          borderRadius="full"
+          w={{ base: "100px", lg: "250px" }}
         />
 
         <Stack w={{ base: "100%", lg: "500px" }} spacing={3}>

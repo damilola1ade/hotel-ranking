@@ -53,10 +53,10 @@ export const useGetSingleHotel = (id: string | undefined) => {
   return { data, isLoading, isError, error };
 };
 
-export const useGetHotelsByBrand = (brandName: string) => {
+export const useGetHotelsByBrand = (brandNames: string[]) => {
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["hotels", brandName],
-    queryFn: () => getHotelsByBrand(brandName),
+    queryKey: ["hotels", brandNames],
+    queryFn: () => getHotelsByBrand(brandNames),
   });
 
   return { data, isLoading, isError, error };

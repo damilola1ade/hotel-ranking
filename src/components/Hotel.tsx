@@ -1,23 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useGetHotelsByBrand } from "../services/hotel";
 
 import { BrandPayload, HotelPayload } from "../types";
 
-import { Flex, Select, SimpleGrid, Text, Tooltip } from "@chakra-ui/react";
-
-import { MdOutlineClear } from "react-icons/md";
+import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
 
 import CreateHotel from "./CreateHotel";
 import HotelComponent from "./HotelComponent";
 import Loader from "./Loader";
 
+import Select from "react-select";
+
 const Hotel = ({ brands }: { brands: BrandPayload }) => {
-  const [selectedBrand, setSelectedBrand] = useState<string>("");
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
 
-  const { data: hotels, isLoading } = useGetHotelsByBrand(selectedBrand);
+  const { data: hotels, isLoading } = useGetHotelsByBrand(selectedBrands);
 
-  const handleBrandChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedBrand(e.target.value);
+  const handleBrandChange = (selectedOptions: any) => {
+    setSelectedBrands(
+      selectedOptions.map((option: { value: string }) => option.value)
+    );
   };
 
   return (
@@ -27,8 +30,9 @@ const Hotel = ({ brands }: { brands: BrandPayload }) => {
       </Text>
       <Flex
         w="100%"
-        justifyContent={{ base: "normal", lg: "space-between" }}
+        justifyContent={{ base: "normal", md: "space-between" }}
         alignItems="center"
+        flexDirection={{ base: "column-reverse", md: "row" }}
         gap={{ base: 4, lg: 0 }}
       >
         <Flex alignItems="center" gap={1}>
@@ -36,57 +40,46 @@ const Hotel = ({ brands }: { brands: BrandPayload }) => {
             Sort by brands:
           </Text>
           <Select
-            value={selectedBrand}
+            isMulti
+            options={brands?.brands?.map((brand: BrandPayload) => ({
+              value: brand.name,
+              label: brand.name,
+            }))}
+            value={selectedBrands.map((brand) => ({
+              value: brand,
+              label: brand,
+            }))}
             onChange={handleBrandChange}
-            w={{ base: "150px", lg: "150px" }}
-            h="30px"
-            fontSize="sm"
-            borderColor="black"
-            placeholder="Select brand"
-          >
-            {brands?.brands?.map((brand: BrandPayload) => (
-              <option value={brand.name}>{brand.name}</option>
-            ))}
-          </Select>
-
-          {selectedBrand && (
-            <Tooltip label="Clear filter" shouldWrapChildren>
-              <MdOutlineClear
-                onClick={() => setSelectedBrand("")}
-                cursor="pointer"
-                size={25}
-              />
-            </Tooltip>
-          )}
+            className="react-select"
+            placeholder="Select brands to filter"
+            styles={{
+              control: (baseStyles) => ({
+                ...baseStyles,
+                borderColor: "black",
+                minHeight: "10px",
+                minWidth: "150px",
+                fontSize: "12px",
+              }),
+            }}
+          />
         </Flex>
         <CreateHotel />
       </Flex>
 
-      {selectedBrand ? (
-        hotels?.hotels?.length === 0 ? (
-          <Text fontSize={{ base: "xs", lg: "sm" }}>
-            No results found for:{" "}
-            <Text
-              as="span"
-              fontWeight="bold"
-              fontSize={{ base: "xs", lg: "sm" }}
-            >
-              {selectedBrand}
-            </Text>
+      {selectedBrands.length > 0 ? (
+        <Text fontSize={{ base: "xs", lg: "sm" }}>
+          Showing results for:{" "}
+          <Text as="span" fontWeight="bold" fontSize={{ base: "xs", lg: "sm" }}>
+            {selectedBrands.join(", ")}
           </Text>
-        ) : (
-          <Text fontSize={{ base: "xs", lg: "sm" }}>
-            Showing results for:{" "}
-            <Text
-              as="span"
-              fontWeight="bold"
-              fontSize={{ base: "xs", lg: "sm" }}
-            >
-              {selectedBrand}
-            </Text>
-          </Text>
-        )
+        </Text>
       ) : null}
+
+      {!isLoading && !brands?.brands?.length && (
+        <Text fontSize={{ base: "xs", lg: "sm" }} fontWeight="bold" mt={12}>
+          You must create a brand before creating a hotel
+        </Text>
+      )}
 
       {isLoading ? (
         <Flex mt={24} justifyContent="center" alignItems="center">
