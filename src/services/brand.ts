@@ -8,7 +8,7 @@ import {
   updateBrand,
 } from "../api/brand";
 
-import { queryClient } from "../api/api";
+import { queryClient } from "../client/client";
 
 
 export const useCreateBrandMutation = () => {

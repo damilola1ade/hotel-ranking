@@ -8,7 +8,8 @@ import {
   updateHotel,
 } from "../api/hotel";
 import { HotelPayload } from "../types";
-import { queryClient } from "../api/api";
+
+import { queryClient } from "../client/client";
 
 export const useCreateHotelMutation = () => {
   const {
